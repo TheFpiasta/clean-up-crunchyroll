@@ -7,7 +7,8 @@ Currently, anime titles are displayed twice or three times in the Crunchyroll si
 The extention is NOT evailable on the Chrome Web Store. However, you can load the extention locally.
 (To create a Chrome Web Store-Developer Account, you haveto pay 5 $ registration fee ... I'm not ready to do this right now for a fun account.)
 
-How to Load an Extension Locally
+To load the extension locally:
+
 1. Clone this repoitory.
 2. In your browser, go to: `chrome://extensions/`
 3. Toggle Developer mode on (top right of the page).
