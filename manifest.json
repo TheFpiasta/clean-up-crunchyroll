@@ -3,11 +3,17 @@
   "name": "Clean-up Crunchyroll simulcast calendar",
   "version": "1.0",
   "description": "Currently, anime titles are displayed twice or three times in the Crunchyroll simulcast calendar when they are released in multiple languages. This extension cleans up the simulcast calendar and only displays the first entry for each anime title per day.",
-  "permissions": ["scripting"],
+  "permissions": [
+    "scripting"
+  ],
   "content_scripts": [
     {
-      "matches": ["https://www.crunchyroll.com/*"],
-      "js": ["content.js"]
+      "matches": [
+        "https://www.crunchyroll.com/*"
+      ],
+      "js": [
+        "content.js"
+      ]
     }
   ],
   "icons": {
