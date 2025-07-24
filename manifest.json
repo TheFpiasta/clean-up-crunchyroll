@@ -6,7 +6,7 @@
   "permissions": ["scripting"],
   "content_scripts": [
     {
-      "matches": ["https://www.crunchyroll.com/"],
+      "matches": ["https://www.crunchyroll.com/*"],
       "js": ["content.js"]
     }
   ],
