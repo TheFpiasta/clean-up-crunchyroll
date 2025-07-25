@@ -23,6 +23,8 @@ It will appear in your list of extensions and be active immediately.
 Any changes you make to the source files can be refreshed by clicking the Reload icon next to the extension in the
 Extensions page.
 
+<img src="example.png" alt="Example" width="600">
+
 ## Features
 
 ### Core Functionality
@@ -40,6 +42,8 @@ Extensions page.
 ## Settings
 
 Click the extension icon in your browser toolbar to access settings. All changes are saved automatically.
+
+<img src="Settings.png" alt="Settings" width="600">
 
 ### Duplicate Handling Mode
 
@@ -148,4 +152,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Built for the Crunchyroll community
 - Inspired by the need for a cleaner anime viewing experience
-
