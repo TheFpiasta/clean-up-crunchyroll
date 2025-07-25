@@ -43,43 +43,22 @@ Click the extension icon in your browser toolbar to access settings. All changes
 
 ### Duplicate Handling Mode
 
-**What it does**: Controls which duplicate entries are removed when the same anime appears multiple times.
-
-**Options**:
+Controls which duplicate entries are removed when the same anime appears multiple times.
 
 - **Keep first occurrence** (default): Removes all duplicates except the first one found
 - **Keep last occurrence**: Removes all duplicates except the last one found
 
-**When to use**: Choose "first" if you prefer seeing the earliest time slot for each anime. Choose "last" if you prefer
-the latest time slot.
-
 ### Enable Extension
 
-**What it does**: Master on/off switch for the entire extension functionality.
-
-**Options**: Toggle switch (on/off)
-
-**When to use**: Turn off to temporarily disable duplicate removal without uninstalling the extension. Useful for
-comparing the cleaned vs original calendar view.
+Master on/off switch for the entire extension functionality.
 
 ### Debug Logging
 
-**What it does**: Shows detailed information in the browser console about what the extension is doing.
-
-**Options**: Toggle switch (on/off)
-
-**What you'll see**: Console messages showing how many duplicates were removed per day, total cleanup statistics, and
-any errors.
-
-**When to use**: Enable when troubleshooting issues or when you want to see exactly what the extension cleaned up.
+Shows detailed information in the browser console about what the extension is doing.
 
 ### Dark Theme
 
-**What it does**: Changes the appearance of the settings popup interface.
-
-**Options**: Toggle switch (Light/Dark)
-
-**Note**: This only affects the settings popup appearance, not the Crunchyroll website itself.
+Changes the appearance of the settings popup interface.
 
 ### Default Settings
 
@@ -89,10 +68,6 @@ When you first install the extension or click "Reset":
 - Extension: Enabled
 - Debug Logging: Disabled
 - Theme: Dark
-
-### Reset Button
-
-Restores all settings to their default values. Use this if you want to start over with the original configuration.
 
 ## Privacy & Security
 
