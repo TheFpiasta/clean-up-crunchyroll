@@ -143,14 +143,14 @@ document.addEventListener('DOMContentLoaded', () => {
     loadSettings();
 
     // Duplicate mode checkbox event listeners (mutual exclusivity)
-    document.getElementById('duplicateMode-first').addEventListener('change', function() {
+    document.getElementById('duplicateMode-first').addEventListener('change', function () {
         if (this.checked) {
             document.getElementById('duplicateMode-last').checked = false;
         }
         saveSettings();
     });
 
-    document.getElementById('duplicateMode-last').addEventListener('change', function() {
+    document.getElementById('duplicateMode-last').addEventListener('change', function () {
         if (this.checked) {
             document.getElementById('duplicateMode-first').checked = false;
         }
