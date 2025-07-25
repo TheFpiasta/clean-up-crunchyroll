@@ -4,7 +4,8 @@
   "version": "1.0",
   "description": "Currently, anime titles are displayed twice or three times in the Crunchyroll simulcast calendar when they are released in multiple languages. This extension cleans up the simulcast calendar and only displays the first entry for each anime title per day.",
   "permissions": [
-    "scripting"
+    "scripting",
+    "storage"
   ],
   "content_scripts": [
     {
@@ -18,5 +19,11 @@
   ],
   "icons": {
     "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "settings.html",
+    "default_icon": {
+      "128": "icon.png"
+    }
   }
 }

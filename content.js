@@ -1,20 +1,28 @@
-(() => {
-    const days = document.getElementsByClassName("days")[0].children;
-    for (let day of days) {
-        const dayInner = day.getElementsByTagName("li");
-        const dayInnerCount = dayInner.length;
-        removeDuplicatesKeepFirst_TwoPass(dayInner);
-        removeDuplicatesKeepLast(dayInner)
-        const names = Array.from(day.getElementsByTagName("li")).map(item => item.getElementsByTagName("cite")[0].innerText);
-        console.debug(`cleaned-up ${dayInnerCount - names.length}/${dayInnerCount} useless Items. Unique Titles: ${names.length}`);
-    }
-})();
+// Chrome extension content script for cleaning up Crunchyroll simulcast calendar
+
+// Use chrome.storage.sync if available, otherwise fallback to chrome.storage.local
+const storage = chrome.storage && chrome.storage.sync ? chrome.storage.sync : chrome.storage.local;
+
+const defaultSettings = {
+    duplicateMode: 'first',
+    enableExtension: true,
+    debugLogging: false,
+    theme: 'dark'
+};
+
+// Helper function to log debug messages only when debug logging is enabled
+function debugLog(...args) {
+    storage.get(['debugLogging'], (result) => {
+        if (result.debugLogging) {
+            console.debug(...args);
+        }
+    });
+}
 
 /**
  * Remove duplicates from the dayInner list, keeping the first occurrence of each anime name.
  * Uses a Set to track seen names and an array to collect indices of items to remove.
- *
- * @param dayInner {HTMLCollection} - The collection of list items for a specific day.
+ * @param {HTMLCollection} dayInner - The collection of list items for a specific day.
  */
 function removeDuplicatesKeepFirst_TwoPass(dayInner) {
     const seen = new Set();
@@ -36,8 +44,7 @@ function removeDuplicatesKeepFirst_TwoPass(dayInner) {
 /**
  * Remove duplicates from the dayInner list, keeping the last occurrence of each anime name.
  * Uses an array to track names and iterates backwards to remove duplicates.
- *
- * @param dayInner {HTMLCollection} - The collection of list items for a specific day.
+ * @param {HTMLCollection} dayInner - The collection of list items for a specific day.
  */
 function removeDuplicatesKeepLast(dayInner) {
     const names = [];
@@ -50,4 +57,58 @@ function removeDuplicatesKeepLast(dayInner) {
             names.push(animeName);
         }
     }
+}
+
+/**
+ * Main function to clean up the Crunchyroll simulcast calendar
+ */
+function cleanupCrunchyrollCalendar() {
+    storage.get(defaultSettings, (settings) => {
+        // Ensure defaults if settings are missing
+        const mergedSettings = Object.assign({}, defaultSettings, settings);
+
+        if (!mergedSettings.enableExtension) {
+            debugLog('Extension is disabled, skipping cleanup');
+            return;
+        }
+
+        const daysContainer = document.getElementsByClassName("days")[0];
+        if (!daysContainer?.children) {
+            debugLog('Days container not found, skipping cleanup');
+            return;
+        }
+
+        const days = daysContainer.children;
+        let totalCleaned = 0;
+
+        for (let day of days) {
+            const dayInner = day.getElementsByTagName("li");
+            const dayInnerCount = dayInner.length;
+
+            if (mergedSettings.duplicateMode === 'first') {
+                removeDuplicatesKeepFirst_TwoPass(dayInner);
+            } else {
+                removeDuplicatesKeepLast(dayInner);
+            }
+
+            const remainingItems = day.getElementsByTagName("li").length;
+            const cleanedCount = dayInnerCount - remainingItems;
+            totalCleaned += cleanedCount;
+
+            if (cleanedCount > 0) {
+                debugLog(`Day cleanup: removed ${cleanedCount}/${dayInnerCount} duplicates, ${remainingItems} unique titles remaining`);
+            }
+        }
+
+        if (totalCleaned > 0) {
+            debugLog(`Calendar cleanup complete: ${totalCleaned} duplicate items removed`);
+        }
+    });
+}
+
+// Initialize the extension when the DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', cleanupCrunchyrollCalendar);
+} else {
+    cleanupCrunchyrollCalendar();
 }

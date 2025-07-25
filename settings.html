@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clean Up Crunchyroll - Settings</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            min-width: 320px;
+            min-height: 200px;
+        }
+
+        .container {
+            background: #fff;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 24px 20px 20px 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0 0 20px 0;
+            color: #ff8800;
+        }
+
+        .github-link {
+            display: inline-block;
+            color: #0366d6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .github-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Dark theme styles for links */
+        .container.dark-theme .github-link {
+            color: #58a6ff;
+        }
+
+        .container.dark-theme .github-link:hover {
+            color: #79c0ff;
+            text-decoration: underline;
+        }
+
+        .section-title {
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .reset-btn {
+            background: #ffe5e5;
+            color: #333;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            float: right;
+            transition: background-color 0.2s ease;
+        }
+
+        .reset-btn:hover {
+            background: #ffcccc;
+        }
+
+        /* Dark theme styles for reset button */
+        .container.dark-theme .reset-btn {
+            background: #c34242;
+            color: #ddd;
+        }
+
+        .container.dark-theme .reset-btn:hover {
+            background: #ff3434;
+        }
+
+        /* Theme toggle switch styles */
+        .theme-setting {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Apply consistent font size to all form labels */
+        form label {
+            font-size: 1.4em;
+            font-weight: 500;
+
+            &.sublable {
+                font-size: 1.2em;
+                font-weight: 400;
+                /*color: #666;*/
+            }
+        }
+
+        /* Setting row styles for consistent layout */
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .setting-item {
+            margin-bottom: 20px;
+        }
+
+        /* Custom checkbox styles to match theme */
+        .setting-row input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            position: relative;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .setting-row input[type="checkbox"]:checked {
+            background: #ff8800;
+            border-color: #ff8800;
+        }
+
+        .setting-row input[type="checkbox"]:checked:before {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Dark theme styles for custom checkboxes */
+        .container.dark-theme .setting-row input[type="checkbox"] {
+            background: #2d323c;
+            border-color: #555;
+        }
+
+        .container.dark-theme .setting-row input[type="checkbox"]:checked {
+            background: #ff8800;
+            border-color: #ff8800;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-size: 1em !important;
+            font-weight: 400 !important;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .radio-group input[type="radio"] {
+            margin: 0;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        /* Toggle switch styles (shared by theme and debug switches) */
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: #ccc;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-switch.active {
+            background: #ff8800;
+        }
+
+        .toggle-switch-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .toggle-switch.active .toggle-switch-slider {
+            transform: translateX(26px);
+        }
+
+        /* Dark theme styles for toggle switches */
+        .container.dark-theme .toggle-switch {
+            background: #555;
+        }
+
+        .container.dark-theme .toggle-switch.active {
+            background: #ff8800;
+        }
+
+        /* Legacy theme switch styles for backward compatibility */
+        .theme-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: #ccc;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-switch.dark {
+            background: #ff8800;
+        }
+
+        .theme-switch-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-switch.dark .theme-switch-slider {
+            transform: translateX(26px);
+        }
+
+        /* Dark theme styles for theme toggle */
+        .container.dark-theme .theme-switch {
+            background: #555;
+        }
+
+        .container.dark-theme .theme-switch.dark {
+            background: #ff8800;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Clean Up Crunchyroll</h1>
+    <p class="intro-text">Cleanup the Crunchyroll simulcast calendar by only displaying each anime title once a day.</p>
+    <div class="section-title">Settings</div>
+    <form id="settings-form">
+        <div class="setting-item">
+            <label style="display: block; margin-bottom: 9px;">Duplicate Handling Mode:</label>
+            <div class="setting-row" style="margin-bottom: 0;">
+                <label class="sublable" for="duplicateMode-first">Keep first occurrence:</label>
+                <input type="checkbox" id="duplicateMode-first" name="duplicateMode" value="first">
+            </div>
+            <div class="setting-row" style="margin-bottom: 0;">
+                <label class="sublable" for="duplicateMode-last">Keep last occurrence:</label>
+                <input type="checkbox" id="duplicateMode-last" name="duplicateMode" value="last">
+            </div>
+        </div>
+        <div class="setting-row setting-item">
+            <label>Dark Theme:</label>
+            <div class="theme-switch" id="theme-switch">
+                <div class="theme-switch-slider"></div>
+            </div>
+        </div>
+        <div class="setting-row setting-item">
+            <label for="enableExtension">Enable Extension:</label>
+            <div class="toggle-switch" id="enableExtension">
+                <div class="toggle-switch-slider"></div>
+            </div>
+        </div>
+        <div class="setting-row setting-item">
+            <label for="debugLogging">Debug Logging:</label>
+            <div class="toggle-switch" id="debugLogging">
+                <div class="toggle-switch-slider"></div>
+            </div>
+        </div>
+
+        <div class="setting-row setting-item"><!-- space --></div>
+        <button type="button" id="reset-btn" class="reset-btn">Reset</button>
+    </form>
+    <div style="clear: both;"></div>
+    <hr style="margin-top: 40px;">
+    <p>View the project on <a class="github-link" href="https://github.com/TheFpiasta/clean-up-crunchyroll"
+                              target="_blank">GitHub</a></p>
+
+</div>
+<script src="settings.js"></script>
+</body>
+</html>
