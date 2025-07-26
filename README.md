@@ -129,13 +129,6 @@ Enable "Debug Logging" in the settings to see detailed console output:
 - Chrome Extensions API
 - Modern JavaScript support (ES6+)
 
-Fully supported browsers:
-
-- Google Chrome (latest)
-- Microsoft Edge (Chromium-based)
-- Brave Browser
-- Opera (Chromium-based)
-
 ## Contributing
 
 1. Fork the repository
