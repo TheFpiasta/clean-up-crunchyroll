@@ -19,16 +19,16 @@
     }
   ],
   "icons": {
-    "128": "icon.png",
-    "64": "icon.png",
-    "48": "icon.png",
-    "32": "icon.png",
-    "16": "icon.png"
+    "128": "images/icon-128.png",
+    "64": "images/icon-64.png",
+    "48": "images/icon-48.png",
+    "32": "images/icon-32.png",
+    "16": "images/icon-16.png"
   },
   "action": {
     "default_popup": "extension/settings.html",
     "default_icon": {
-      "128": "icon.png"
+      "128": "images/icon-128.png"
     }
   }
 }
