@@ -23,7 +23,7 @@ It will appear in your list of extensions and be active immediately.
 Any changes you make to the source files can be refreshed by clicking the Reload icon next to the extension in the
 Extensions page.
 
-<img src="example-cleanup.png" alt="Example" width="600">
+<img src="images/example-cleanup.png" alt="Example" width="600">
 
 ## Features
 
@@ -43,7 +43,7 @@ Extensions page.
 
 Click the extension icon in your browser toolbar to access settings. All changes are saved automatically.
 
-<img src="example-settings.png" alt="Settings" width="600">
+<img src="images/example-settings.png" alt="Settings" width="600">
 
 ### Duplicate Handling Mode
 
