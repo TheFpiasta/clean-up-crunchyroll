@@ -4,15 +4,15 @@ Currently, anime titles are displayed twice or three times in the Crunchyroll si
 in multiple languages. This extension cleans up the simulcast calendar and only displays the first entry for each anime
 title per day.
 
-## How to use the Extention
+## How to use the Extension
 
-The extension is NOT available on the Chrome Web Store. However, you can load the extension locally.
-(To create a Chrome Web Store-Developer Account, you have to pay 5 $ registration fee ... I'm not ready to do this right
-now for a fun account.)
+The extension will be available on the Chrome Web Store in a view days.
+However, you can load the extension locally too.
+
 
 To load the extension locally:
 
-1. Clone this repoitory.
+1. Clone this repository.
 2. In your browser, go to: `chrome://extensions/`
 3. Toggle Developer mode on (top right of the page).
 4. Click the Load unpacked button.
