@@ -60,9 +60,29 @@ function removeDuplicatesKeepLast(dayInner) {
 }
 
 /**
+ * Get the days container from the document.
+ * This function assumes there is only one unique container with the class "days".
+ * If multiple containers are found, it logs a debug message and returns an empty array.
+ *
+ * @returns {HTMLCollection|*[]} - Returns the children of the days container or an empty array if not found.
+ */
+function getDays() {
+    const daysContainer = document.getElementsByClassName("days");
+
+    if (daysContainer.length !== 1) {
+        debugLog('No unique days containers found in the document');
+        return [];
+    }
+
+    return daysContainer[0].children;
+}
+
+/**
  * Main function to clean up the Crunchyroll simulcast calendar
  */
 function cleanupCrunchyrollCalendar() {
+    debugLog('starting Crunchyroll calendar cleanup');
+
     storage.get(defaultSettings, (settings) => {
         // Ensure defaults if settings are missing
         const mergedSettings = Object.assign({}, defaultSettings, settings);
@@ -72,13 +92,13 @@ function cleanupCrunchyrollCalendar() {
             return;
         }
 
-        const daysContainer = document.getElementsByClassName("days")[0];
-        if (!daysContainer?.children) {
+        const days = getDays();
+
+        if (days.length === 0) {
             debugLog('Days container not found, skipping cleanup');
             return;
         }
 
-        const days = daysContainer.children;
         let totalCleaned = 0;
 
         for (let day of days) {
@@ -107,6 +127,7 @@ function cleanupCrunchyrollCalendar() {
 }
 
 // Initialize the extension when the DOM is ready
+window.cleanupCrunchyrollCalendar = cleanupCrunchyrollCalendar;
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', cleanupCrunchyrollCalendar);
 } else {
