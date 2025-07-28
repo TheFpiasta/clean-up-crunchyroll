@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Cleanup Crunchyroll simulcast calendar",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "This extension cleanup the simulcast calendar and displays only one entry for each anime title per day.",
   "permissions": [
     "scripting",
